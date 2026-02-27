@@ -1,8 +1,7 @@
 services:
   openmanus:
-    build: .
+    image: ghcr.io/coppolekkia/manus:latest
     container_name: openmanus_agent
     volumes:
-      # This mounts the config folder so you can inject your API keys easily
       - ./config:/app/config
     restart: unless-stopped
