@@ -1,18 +1,18 @@
-# Usiamo la versione completa di Python (senza "-slim"), che ha già git e tutti i compilatori
-FROM python:3.12
+# Usiamo Python 3.10: la versione più stabile e compatibile per i progetti AI
+FROM python:3.10
 
 WORKDIR /app
 
 COPY . .
 
-# 1. Aggiorniamo pip all'ultima versione (evita molti bug di compatibilità)
+# Aggiorniamo pip
 RUN pip install --upgrade pip
 
-# 2. Installiamo le librerie del progetto
-RUN pip install --no-cache-dir -r requirements.txt
+# Installiamo con un timeout allungato per evitare interruzioni di rete
+RUN pip install --no-cache-dir --default-timeout=100 -r requirements.txt
 
-# 3. Installiamo i browser necessari a OpenManus per navigare su internet
+# Installiamo i browser per OpenManus
 RUN playwright install --with-deps chromium
 
-# 4. Avvia il progetto
+# Avvio del progetto
 CMD ["python", "main.py"]
