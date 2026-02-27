@@ -2,6 +2,9 @@ services:
   openmanus:
     image: ghcr.io/coppolekkia/manus:latest
     container_name: openmanus_agent
+    stdin_open: true # Tiene il microfono aperto
+    tty: true        # Simula uno schermo
     volumes:
-      - ./config:/app/config
+      # Modifichiamo il percorso per puntare alla nostra nuova cartella sicura
+      - /root/manus_config:/app/config
     restart: unless-stopped
