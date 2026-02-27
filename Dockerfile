@@ -1,18 +1,18 @@
-# Usiamo Python 3.10: la versione più stabile e compatibile per i progetti AI
 FROM python:3.10
 
 WORKDIR /app
 
 COPY . .
 
-# Aggiorniamo pip
-RUN pip install --upgrade pip
+# 1. Installiamo 'uv', l'installatore ultra-veloce e leggero
+RUN pip install uv
 
-# Installiamo con un timeout allungato per evitare interruzioni di rete
-RUN pip install --no-cache-dir --default-timeout=100 -r requirements.txt
+# 2. Usiamo 'uv' al posto di pip per installare i pacchetti. 
+# Essendo velocissimo e leggero sulla RAM, dovrebbe ingannare i limiti di Hostinger
+RUN uv pip install --system -r requirements.txt
 
-# Installiamo i browser per OpenManus
+# 3. Installiamo i browser per OpenManus
 RUN playwright install --with-deps chromium
 
-# Avvio del progetto
+# 4. Avvia il progetto
 CMD ["python", "main.py"]
