@@ -5,6 +5,6 @@ services:
     stdin_open: true
     tty: true
     volumes:
-      # Peschiamo il file dal nuovo percorso
       - /var/lib/manus_config:/app/config
+    command: tail -f /dev/null
     restart: unless-stopped
