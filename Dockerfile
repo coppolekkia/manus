@@ -1,4 +1,4 @@
-# (Lascia la riga FROM originale che hai all'inizio, ad es. FROM python:3.12-slim)
+FROM python:3.12-slim
 
 WORKDIR /app
 
@@ -14,6 +14,5 @@ COPY . .
 # 2. Installa le librerie Python
 RUN pip install --no-cache-dir -r requirements.txt
 
-# 3. COMANDO FONDAMENTALE: Non usare "bash". 
-# Usa il comando che avvia realmente il bot (verifica se si chiama main.py o in un altro modo)
+# 3. Avvia il progetto
 CMD ["python", "main.py"]
