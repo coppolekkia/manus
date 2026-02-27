@@ -2,12 +2,11 @@ name: Costruisci e Pubblica su GHCR
 
 on:
   push:
-    branches:
-      - main
-      - master
+  workflow_dispatch:
 
 jobs:
   build-and-push:
+# ... (lascia tutto il resto identico da runs-on in poi)
     runs-on: ubuntu-latest
     permissions:
       contents: read
